@@ -1,0 +1,10 @@
+{
+    "files.exclude": {
+        "docker-compose.yml": true,
+        "Dockerfile:": true,
+        "xdebug.ibi": true,
+        "README.md": true,
+        ".gitignore": true
+
+    }
+}

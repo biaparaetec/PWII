@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Best Ice Cream - Sorveteria Premium</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-ice-cream"></i>
+                <span>The Best Ice Cream</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">Início</a></li>
+                <li><a href="#menu">Cardápio</a></li>
+                <li><a href="#about">Sobre</a></li>
+                <li><a href="#contact">Contato</a></li>
+            </ul>
+            <div class="cart-icon">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count">0</span>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>The Best Ice Cream</h1>
+            <p>Sorvetes artesanais com os melhores sabores</p>
+            <button class="cta-button">Explore o Cardápio</button>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="menu">
+        <div class="container">
+            <h2>Nossos Sorvetes</h2>
+            <p class="section-subtitle">Deliciosos sabores para todos os paladares</p>
+            
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="fruta">Frutas</button>
+                <button class="filter-btn" data-filter="chocolate">Chocolate</button>
+                <button class="filter-btn" data-filter="especial">Especiais</button>
+            </div>
+
+            <div class="ice-cream-grid" id="iceCreamGrid">
+                <!-- Cards serão inseridos por JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Sobre Nós</h2>
+                    <p>A The Best Ice Cream foi fundada com o objetivo de oferecer os melhores sorvetes artesanais da região, utilizando ingredientes naturais e de alta qualidade.</p>
+                    <p>Cada sabor é cuidadosamente desenvolvido por nossos mestres sorveterias, garantindo uma experiência deliciosa em cada colher.</p>
+                    <div class="features">
+                        <div class="feature">
+                            <i class="fas fa-leaf"></i>
+                            <h4>100% Natural</h4>
+                            <p>Sem corantes artificiais</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-snowflake"></i>
+                            <h4>Gelado Perfeito</h4>
+                            <p>Temperatura ideal</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-star"></i>
+                            <h4>Prêmio Qualidade</h4>
+                            <p>Certificado Premium</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <i class="fas fa-ice-cream"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Entre em Contato</h2>
+            <p class="section-subtitle">Estamos prontos para servir você</p>
+            
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <i class="fas fa-phone"></i>
+                    <h3>Telefone</h3>
+                    <p>(11) 2345-6789</p>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Endereço</h3>
+                    <p>Av. Gelada, 456 - São Paulo, SP</p>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Horário</h3>
+                    <p>Qui-Dom: 12h às 22h</p>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p>contato@bestcream.com</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h2>Seu Carrinho</h2>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <p class="empty-cart">Seu carrinho está vazio</p>
+            </div>
+            <div class="cart-summary">
+                <div class="summary-row">
+                    <span>Subtotal:</span>
+                    <span id="subtotal">R$ 0,00</span>
+                </div>
+                <div class="summary-row">
+                    <span>Taxa Entrega:</span>
+                    <span id="delivery">R$ 5,00</span>
+                </div>
+                <div class="summary-row total">
+                    <span>Total:</span>
+                    <span id="total">R$ 0,00</span>
+                </div>
+            </div>
+            <button class="checkout-btn" id="checkoutBtn">Finalizar Pedido</button>
+        </div>
+    </div>
+
+    <!-- Order Modal -->
+    <div class="order-modal" id="orderModal">
+        <div class="order-content">
+            <div class="order-header">
+                <h2>Finalizar Pedido</h2>
+                <button class="close-btn" onclick="closeOrderModal()">&times;</button>
+            </div>
+            <form id="orderForm">
+                <div class="form-group">
+                    <label>Nome Completo *</label>
+                    <input type="text" placeholder="Seu nome" required>
+                </div>
+                <div class="form-group">
+                    <label>Email *</label>
+                    <input type="email" placeholder="seu@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Telefone *</label>
+                    <input type="tel" placeholder="(11) 9999-9999" required>
+                </div>
+                <div class="form-group">
+                    <label>Endereço de Entrega *</label>
+                    <input type="text" placeholder="Rua, número, complemento" required>
+                </div>
+                <div class="form-group">
+                    <label>Bairro *</label>
+                    <input type="text" placeholder="Seu bairro" required>
+                </div>
+                <div class="form-group">
+                    <label>Observações</label>
+                    <textarea placeholder="Obs. para o entregador" rows="3"></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Confirmar Pedido</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="success-modal" id="successModal">
+        <div class="success-content">
+            <i class="fas fa-check-circle"></i>
+            <h2>Pedido Realizado com Sucesso!</h2>
+            <p id="successMessage">Obrigado por sua compra!</p>
+            <button class="success-btn" onclick="closeSuccessModal()">Voltar ao Menu</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>The Best Ice Cream</h4>
+                    <p>Os melhores sorvetes artesanais da região!</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="#menu">Cardápio</a></li>
+                        <li><a href="#about">Sobre</a></li>
+                        <li><a href="#contact">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Siga-nos</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 The Best Ice Cream. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
